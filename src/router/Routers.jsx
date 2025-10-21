@@ -6,6 +6,7 @@ import Services from "../pages/services/Services";
 import Projects from "../pages/Projects/Projects";
 import OurTeam from "../pages/OurTeam/OurTeam";
 import Contact from "../pages/contact/Contact";
+import ServiceDetails from "../components/ServiceDetails/ServiceDetails";
 
 export const router = createBrowserRouter([
   {
@@ -15,11 +16,18 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader: () => fetch("../servicesData.json"),
         element: <Home />,
       },
       {
         path: "services",
+        loader: () => fetch("../servicesData.json"),
         element: <Services />,
+      },
+      {
+        path: "services-details/:serviceTitle",
+        loader: () => fetch("../servicesData.json"),
+        element: <ServiceDetails />,
       },
       {
         path: "projects",
